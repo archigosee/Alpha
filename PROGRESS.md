@@ -11,7 +11,7 @@ Every session: read this first, update it last.
 (Concepts DZ missed at a checkpoint. Cleared before any new material.)
 - **Request/response journey:** DZ must explain, from memory, the full trip of `localhost:8080/health`: the browser sends a GET request with path `/health` → Go's server matches the path to `healthHandler` → the handler writes text into `w` → that text travels back as the response → the browser displays it. (He said "Go sends the request" and "the server responds with the path"; both wrong.)
 - **Why `ListenAndServe` blocks:** DZ must explain why the program keeps running: the server is an endless loop waiting for requests; if it ended, no later requests could be answered. Ctrl + C stops it. (He couldn't answer this; it was explained at the end of Day 1.)
-- **Small fix:** change the `/about` text to exactly `Alpha Clinic - Addis Ababa. Open Mon-Sat, 8am to 6pm.` and push.
+- ~~**Small fix:** `/about` text~~ Done 2026-11-03.
 
 ## Session log
 | Date | Day | Covered | Checkpoint | Notes |
