@@ -15,7 +15,7 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "About - clinic server")
+	fmt.Fprintf(w, "Alpha Clinic - Addis Ababa. Open Mon-Sat, 8am to 6pm.")
 }
 
 func main() {
