@@ -21,6 +21,7 @@ func aboutHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	http.HandleFunc("/", helloHandler)
 	http.HandleFunc("/health", healthHandler)
+	http.HandleFunc("/about", aboutHandler)
 
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
