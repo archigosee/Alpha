@@ -6,13 +6,20 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"strconv"
+	"sort"
 )
 
-type Doctor struct {
-	Name       string  `json:"name"`
-	Room       int     `json:"room"`
-	Specialist bool    `json:"specialist"`
-	Fee        float64 `json:"fee"`
+var patients = map[int]Patient{
+	1: {ID: 1, Name: "Abebe Kebede", Phone: "0911223344", Age: 34},
+	2: {ID: 2, Name: "Sara Tadesse", Phone: "0922334455", Age: 28},
+	3: {ID: 3, Name: "Hana Girma", Phone: "0933445566", Age: 45},
+}
+
+var appointments = []Appointment{
+	{ID: 1, PatientID: 1, Doctor: "Dr. Hana", Time: "09:00 AM"},
+	{ID: 2, PatientID: 2, Doctor: "Dr. Abel", Time: "10:30 AM"},
+	{ID: 3, PatientID: 3, Doctor: "Dr. Hana", Time: "02:00 PM"},
 }
 
 type FeeResponse struct {
@@ -90,6 +97,66 @@ func feeHandler(w http.ResponseWriter, r *http.Request) {
     }
 }
 
+func patientHandler(w http.ResponseWriter, r *http.Request) {
+	idText := r.URL.Query().Get("id")
+
+	id, err := strconv.Atoi(idText)
+	if err != nil {
+		http.Error(w, "id must be a number", http.StatusBadRequest)
+		return
+	}
+
+	p, found := patients[id]
+	if !found {
+		http.Error(w, "patient not found", http.StatusNotFound)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(w).Encode(p)
+	if err != nil {
+		http.Error(w, "could not encode patient", http.StatusInternalServerError)
+	}
+}
+
+func patientsHandler(w http.ResponseWriter, r *http.Request) {
+	list := []Patient{}
+	for _, p := range patients {
+		list = append(list, p)
+	}
+
+	sort.Slice(list, func(i, j int) bool {
+		return list[i].ID < list[j].ID
+	})
+
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(list)
+	if err != nil {
+		http.Error(w, "could not encode patients", http.StatusInternalServerError)
+	}
+}
+
+func appointmentsHandler(w http.ResponseWriter, r *http.Request) {
+	doctor := r.URL.Query().Get("doctor")
+
+	result := appointments
+	if doctor != "" {
+		filtered := []Appointment{}
+		for _, appt := range appointments {
+			if appt.Doctor == doctor {
+				filtered = append(filtered, appt)
+			}
+		}
+		result = filtered
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	err := json.NewEncoder(w).Encode(result)
+	if err != nil {
+		http.Error(w, "could not encode appointments", http.StatusInternalServerError)
+	}
+}
+
 func main() {
 	http.HandleFunc("/", helloHandler)
 	http.HandleFunc("/health", healthHandler)
@@ -97,6 +164,9 @@ func main() {
 	http.HandleFunc("/doctor", doctorHandler)
 	http.HandleFunc("/room", roomHandler)
 	http.HandleFunc("/fee", feeHandler)
+	http.HandleFunc("/patient", patientHandler)
+	http.HandleFunc("/patients", patientsHandler)
+	http.HandleFunc("/appointments", appointmentsHandler)
 
 	fmt.Println("Server running on http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
