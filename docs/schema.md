@@ -92,3 +92,4 @@ Tracks scheduled visits between patients and doctors.
    - `ON DELETE RESTRICT`: Prevents accidentally deleting a doctor who has scheduled appointments.
 3. **`NOT NULL` across required attributes**
    - Enforces complete data integrity — an appointment must always have an assigned patient, doctor, date/time, and status.
+
