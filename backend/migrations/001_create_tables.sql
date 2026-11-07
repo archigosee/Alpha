@@ -1,3 +1,4 @@
+
 CREATE TABLE patients (
     id            SERIAL PRIMARY KEY,
     name          TEXT NOT NULL,
