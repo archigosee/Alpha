@@ -3,9 +3,10 @@
 Every session: read this first, update it last.
 
 ## Current status
-- **Next session:** Clear redo queue, then Day 5 (SQL queries: SELECT, INSERT, UPDATE, JOIN; create the schema with migrations)
-- **Gate status:** Day 4 concepts passed; schema doc fix queued (small, feeds straight into Day 5)
+- **Next session:** Resume Day 5 mid-session (paused 2026-11-07 14:07 after ~45 min; ~75 min left today). Next step: Build step 1–2 — write `backend/migrations/001_create_tables.sql`, try `DROP TABLE patients;` (read the FK error), drop in the right order, rebuild with `\\i`, check `\\dt`, push. Then INSERT, SELECT/WHERE, UPDATE, JOIN, checkpoint.
+- **Gate status:** Open — redo queue cleared (schema doc fixed 2026-11-07)
 - **Started:** 2026-11-03
+- **Sessions now run in one chat** (DZ's request); daily 8:45am reminder is scheduled from that chat. The separate daily scheduled task is paused, not deleted.
 
 **Setup facts:** PostgreSQL **18** runs on port **5433** (old v17 service stopped and disabled, still installed). Database: `alpha_clinic`, user `postgres`. Start-menu SQL Shell is v17's client — harmless version warning; v18's own shell is under the PostgreSQL 18 folder.
 
@@ -15,7 +16,7 @@ Every session: read this first, update it last.
 
 ## Redo queue
 (Concepts DZ missed at a checkpoint. Cleared before any new material.)
-- **Fix `docs/schema.md` to match his own Day 4 design:** `date_of_birth` → `DATE` (not TIMESTAMP); `fee` → `NUMERIC(10,2)`; rename `specialist` → `specialty`; FKs must say what they point to (`patient_id INTEGER → patients`, `doctor_id INTEGER → doctors`); add `NOT NULL` to `name` (both tables), `patient_id`, `doctor_id`, `start_at`, `status`; `phone` stays nullable (his decision); status values `booked` / `cancelled` / `completed`. Then Day 5 turns this file into real `CREATE TABLE` SQL.
+- none
 
 ## Session log
 | Date | Day | Covered | Checkpoint | Notes |
