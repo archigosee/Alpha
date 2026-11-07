@@ -3,7 +3,7 @@
 Every session: read this first, update it last.
 
 ## Current status
-- **Next session:** Resume Day 5 mid-session (paused 2026-11-07 14:07 after ~45 min; ~75 min left today). Next step: Build step 1–2 — write `backend/migrations/001_create_tables.sql`, try `DROP TABLE patients;` (read the FK error), drop in the right order, rebuild with `\\i`, check `\\dt`, push. Then INSERT, SELECT/WHERE, UPDATE, JOIN, checkpoint.
+- **Next session:** Finish Day 5 (paused again 2026-11-08 00:52; late night). Done so far: CREATE TABLE (all 3, with FKs, CHECK, DEFAULT), migration file `backend/migrations/001_create_tables.sql` rebuilt the DB, DROP order + CASCADE lesson, INSERT (multi-row, NULL phone, DEFAULT status), rule-breaking tests (FK 99, 'Canceled', no name). Still to do: SELECT/WHERE practice, UPDATE (e.g. cancel an appointment), JOIN (appointments with patient and doctor names), then Day 5 checkpoint.
 - **Gate status:** Open — redo queue cleared (schema doc fixed 2026-11-07)
 - **Started:** 2026-11-03
 - **Sessions now run in one chat** (DZ's request); daily 8:45am reminder is scheduled from that chat. The separate daily scheduled task is paused, not deleted.
