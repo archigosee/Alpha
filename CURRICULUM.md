@@ -3,7 +3,7 @@
 Three connected portfolio projects for a fictional clinic, built as a daily learning path.
 
 ## Rules
-- **2 hours max per day, every day.** Sessions start around 9:00am (Addis Ababa).
+- **2 hours max per day, Monday to Saturday. Sundays are rest days.** Session time is agreed at the end of each session (DZ works mornings on weekdays).
 - **Session shape:** Review (10 min) → Concept (20 min) → Build (70 min) → Checkpoint (20 min).
 - **The gate:** A day is passed only when DZ answers the checkpoint correctly *in his own words* and can make a small change to the code himself. If not, the next session starts with a redo of the missed part. No new material until the gate is passed.
 - **Source of truth:** `PROGRESS.md` in this repo. Every session reads it first and updates it last.
